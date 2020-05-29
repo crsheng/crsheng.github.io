@@ -1,10 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<style type="text/css">
+    html,body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .horizontal{
+        float:left;//添加float样式即可实现水平排列
+        border:1px solid black;
+        height: 100%;
+    }
+    .nav li {
+        height:50px;
+        width: 100px;
+        list-style: none;
+        cursor: pointer;
+    }
+    .nav {
+        overflow: hidden;
+        text-align: center;
+    }
+    .nav li:hover,.selected {
+        color: darkorange;
+    }
+    .content{
+        height: 100%;
+        width: 1200px;
+        float: left;
+        margin-left: 44px;
+        margin-right: 44px;
+    }
+    .list{
+        border-bottom: 1px lightgray solid;
+        width: 100%;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <a>Hello World</a>
+    <div class="horizontal" style="border-right:1px lightgray solid;padding-right: 44px;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);">
+        <ul class="nav">
+            <li>Python</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="list">
+            <h1>Python</h1>
+            <h3>Python线程</h3>
+            <a>Python线程不能利用多CPU问题，GIL即全局解释器锁（Global Interpreter Lock），是计算机程序设计语言解释器用于同步线程的工具，使得任何时刻仅有一个线程在执行，Python的线程是操作系统的原生线程。在Linux上为pthread，在Windows上为Win thread，完全由操作系统调度线程的执行。一个python解释器进程内有一条主线程，以及多条用户程序的执行线程。即使在多核CPU平台上，由于GIL的存在，所以禁止多线程的并行执行。</a>
+            <h3>传值与传址</h3>
+            <h3>编码</h3>
+            <a>ASCII --》 GB2312 --》 GBK --》 GB18030   常用的是GBK指代中文Windows编码<br></a>
+            <a>ASCII码无法全部表示各种文字和符号，无法表示中文<br></a>
+            <a>Unicode可以代表所有字符和符号的编码 2bytes<br></a>
+            <a>utf-8是可以表示汉字 en：1byte zh：3bytes<br></a>
+            <a>文本 Unicode 由 str 表示<br></a>
+            <a>二进制由bytes表示<br></a>
+            <a>string encode bytes 编码<br></a>
+            <a>bytes decode string 解码<br></a>
+            <a>Unicode encode 编码 utf-8 decode 解码 Unicode<br></a>
+            <a>Unicode encode GBK decode Unicode          不同的编码转化过程要经过Unicode<br></a>
+            <a>uft-8 decode Unicode encode GBK<br></a>
+            <a>2.7默认ascii码<br></a>
+            <a>3.x默认utf8<br></a>
+            <h3>sys库</h3>
+            <a>sys.path 打印环境变量，例如存储库的路径<br></a>
+            <a>sys.argv  sys.argv[2] 打印的是命令行运行时 输入的参数<br></a>
+            <h3>os库 与系统交互</h3>
+            <a>调用系统命令 os.system(" ") 将结果直接输出到屏幕 不会将结果保存到变量中<br></a>
+            <a>os.popen(" ")打印的是存储该数据的内存对象的地址 os.popen(" ").read() 将该数据从内存中获取并可以将结果保存到变量中<br></a>
+            <a>os.mkdir(" ")在当前运行环境中创建文件夹<br></a>
+            <h3>number</h3>
+            <a>python没有长整型的概念<br></a>
+            <a>32位的机器上 整数的位数为32位，最大存储-2**31~2**31-1<br></a>
+            <a>64位的机器上 整数的位数为64位，最大存储-2**63~2**63-1<br></a>
+            <h3>布尔值</h3>
+            <a>真或假<br></a>
+            <a>0或1<br></a>
+            <h3>三元运算</h3>
+            <a>d = a if a > b else c<br></a>
+            <a>条件为真，d = a<br></a>
+            <a>条件为假，d = c<br></a>
+            <h3>list列表</h3>
+            <a>list[1:3] -->前闭后开 取1 2 切片<br></a>
+            <a>list[-1] 从最后一个开始 [ : :步长]<br></a>
+            <a>list[-1:-3] 取不到结果 为[]<br></a>
+            <a>insert方法根据插入位置插入数据 insert(1," ")<br></a>
+            <a>append直接追加到末尾<br></a>
+            <a>del 删除<br></a>
+            <a>remove删除特定的值<br></a>
+            <a>pop默认删除最后一个数据<br></a>
+            <a>index方法找到特定值的位置<br></a>
+            <a>count方法获取某个特定值的出现个数<br></a>
+            <a>clear清除所有数据<br></a>
+            <a>reverse倒序<br></a>
+            <a>sort 排序 按照ascii码的排序来 先特殊字符 再数字 后大写字母 再小写字母<br></a>
+            <a>extend合并两个list<br></a>
+            <a>list.copy 浅copy 复制一份list  两份列表互不影响  当列表中含有子列表时，复制的是子列表的内存地址，那么子列表的修改会影响到两份列表<br></a>
+            <a>enumerate(list) --》（0索引,1索引对应的值）<br></a>
+            <a>copy库的copy有浅copy和深copy 浅同上 深两者完全独立<br></a>
+            <a>浅copy 获取list的引用  用途--》用来创建联合账号 比如共用存款 一个人取走了钱 两人的账目金额同时会变更 <br></a>
+            <h3>元组 == 只读列表 不可变</h3>
+            <a>（）<br></a>
+            <h3>string</h3>
+            <a>capitalize() 首字母大写<br></a>
+            <a>count() 某个字符出现的次数<br></a>
+            <a>center(50，“-”)将字符放中间，长度为50，不足的用-补全<br></a>
+            <a>ljust(50，"=") 字符串居左长度50，不足在字符串末尾用=补全 rjust与ljust相反<br></a>
+            <a>endswith方法判断字符串是否已该字符结尾<br></a>
+            <a>expandtabs(tabsize=30)如果字符串中包含\t 那么这个方法是将\t转化为30个空格<br></a>
+            <a>find 返回特定字符的索引 如果是个单词返回的是首字母的索引<br></a>
+            <a>format字符替换<br></a>
+            <a>format_map和format一样，只是它传递的数据格式为字典dict 如({'name':' ','year':' '})<br></a>
+            <a>isalnum 是否为阿拉伯数字<br></a>
+            <a>isalpha 是否为纯英文字符<br></a>
+            <a>isdigit 判断是否为数字<br></a>
+            <a>isidentifier 判断是不是一个合法的标识符，判断是否为一个合法的变量名<br></a>
+            <a>islower判断是否为小写<br></a>
+            <a>isnumeric是否为纯数字，小数点也不算<br></a>
+            <a>istitle 每个单词的首字符是否为大写<br></a>
+            <a>isprintable 是否能打印<br></a>
+            <a>isupper 是否为大写<br></a>
+            <a>join --》 列表item拼接 如 ‘+'.join（['1','2','3']）结果为1+2+3<br></a>
+            <a>lower字符串变小写<br></a>
+            <a>upper字符串变大写<br></a>
+            <a>lstrip去掉字符串首部的回车符<br></a>
+            <a>rstrip去掉字符串末尾的回车符<br></a>
+            <a>strip去掉回车符和空格<br></a>
+            <a>maketrans --》？= str.maketrans(”长度相同“，”长度相同“)    ”“.translate(？)<br></a>
+            <a>replace 替换 (原，现，个数)<br></a>
+            <a>rfind 找到的最右边的索引<br></a>
+            <a>split 分成列表<br></a>
+            <a>splitlines 根据换行符分成列表<br></a>
+            <a>swapcase 大写变小写 小写变大写<br></a>
+            <a>title 首字母变大写<br></a>
+            <a>zfill 长度 不够用0补充<br></a>
+            <h3>字典dict</h3>
+            <a>字典是一种key-value的数据类型<br></a>
+            <a>info = {<br></a>
+            <a>     ’dsd‘：’daddad‘<br></a>
+            <a>}<br></a>
+            <a>字典是无序的<br></a>
+            <a>key必须是唯一的<br></a>
+            <a>取值 info['dsd']  没有报错      get（key）没有返回none<br></a>
+            <a>改值，如果key存在则修改，不存在则直接添加该条数据 info['dsd']=“”<br></a>
+            <a>删除<br></a>
+            <a>del info[key]<br></a>
+            <a>pop(key)<br></a>
+            <a>popitem 随机删<br></a>
+            <a>values()打印所有的值<br></a>
+            <a>keys()所有key<br></a>
+            <a>setdefault 设置默认的返回值，如果键值不存在则插入数据<br></a>
+            <a>update --》 a.update(b) 字典a和b合并，a和b中如果有重复的key值，那么由b中的数据来替代<br></a>
+            <a>items 列表的形式<br></a>
+            <a>dict.fromkeys([key值]，“”)创建新的字典 如果数据是多层则是多个key共享同一个内存地址，如果数据是单层则不会有影响<br></a>
+            <a>循环字典<br></a>
+            <a>for i in info 打印的是key<br></a>
+            <a>for k，v in info.items() 不建议用，费时<br></a>
+            <h3>set 集合 去重</h3>
+            <a>表示{1,2,3,4,5,6,7}<br></a>
+            <a>list1.intersection（list2） 取两个集合的交集 &<br></a>
+            <a>union 求两个集合的并集 |<br></a>
+            <a>difference 求两个集合的差集 in list1 not in list2  -<br></a>
+            <a>issubset 1是否是2的子集 <br></a>
+            <a>issuperset 1是否是2的父集<br></a>
+            <a>symmetric_difference 对称差集 两个数组里重复的去掉，不重复的合并  ^<br></a>
+            <a>isdisjoint 判断两个集合是否有交集，没有返回true，有返回false<br></a>
+            <a>add 添加一项 无序<br></a>
+            <a>update（[ ]）添加多项<br></a>
+            <a>remove 删除 不存在的话会报错<br></a>
+            <a>len 长度<br></a>
+            <a>pop删除一个元素并返回被删除的值<br></a>
+            <a>discard 删除 不存在不会报错none 存在的话则返回被删除的元素<br></a>
+            <h3>文件操作3.x</h3>
+            <a>f=open（） 打开文件 要注意编码格式 #文件句柄（包含文件的地址等相关信息），是个内存对象<br></a>
+            <a>read方法 读完一次后 不作处理再读一次是没有数据的 因为光标在末尾了<br></a>
+            <a>readline 读一行<br></a>
+            <a>readlines一行文本内容为一个元素，结果是一个列表<br></a>
+            <a>tell open文件的句柄所在位置 <br></a>
+            <a>seek 设置光标位置<br></a>
+            <a>encoding 打印文件的编码格式<br></a>
+            <a>seekable 是否可以移动光标<br></a>
+            <a>flush 用来刷新缓冲区的，即将缓冲区中的数据立刻写入文件，同时清空缓冲区，不需要是被动的等待输出缓冲区写入。一般情况下，文件关闭后会自动刷新缓冲区，但有时你需要在关闭前刷新它，这时就可以使用 flush() 方法。<br></a>
+            <a>truncate  从头开始 截断内容<br></a>
+            <a>remove 删除 不存在的话会报错<br></a>
+            <a>r+ 读写 <br></a>
+            <a>w+ 写读 写的时候都是直接追加到末尾 2.x可以  但是会把已有的位置内容覆盖<br></a>
+            <a>rb 读 二进制文件 没有encoding参数  1.网络传输，只能用二进制传输 2.x可以用字符 2.视频等二进制文件<br></a>
+            <a>wb 写 只能写入二进制编码的内容<br></a>
+            <a>rb 读 二进制文件 没有encoding参数  1.网络传输，只能用二进制传输 2.x可以用字符 2.视频等二进制文件<br></a>
+            <a>r+U U表示在读取时，会将\r \n \r\n自动转换成\n，与r或r+模式同使用 在window上换行/r/n linux是/n<br></a>
+            <a>with语句，为了避免打开文件后忘记关闭，with open( ， ) as f:  2.7以后可以同时打开多个 with open as f，open as f2：<br></a>
+            <h3>time库</h3>
+            <a>time_format=%y-%m-%d-%x<br></a>
+            <a>time.strftime(time_format) 格式化输出系统时间<br></a>
+            <h3>函数</h3>
+            <a>优点<br></a>
+            <a>代码重用 保持一致性 可扩展<br></a>
+            <a>没有返回值的函数 解释器会返回一个none给变量 返回各种各样的数据类型，也可以返回函数，返回的是函数内存地址，以元组的形式 返回一个值则是object python里所有数据类型都是对象<br></a>
+            <a>关键字调用，与形参顺序无关 y=1，x=2<br></a>
+            <a>形参调用，与形参位置一一对应<br></a>
+            <a>既有关键字调用又有形参位置调用 遵循形参调用原则 关键字参数不能写在位置参数前面<br></a>
+            <a>在定义函数时，如果在定义函数时给形参赋值了，那么在调用函数时，未给定形参值时会使用定义的默认值<br></a>
+            <a>pass占位符 啥事都不做 可让无内容函数通过<br></a>
+            <a>参数组 fun(*args) 传入超过形参个数的实参时可用 变成元组 fun() == fun(*[])  没有则是空元组<br></a>
+            <a>传入字典类型的实参 fun(**kwargs)   fun(name=‘ ’，age= ，sex=‘ ’) ==  **kwargs把关键字参数转化成字典 fun(**{'':'','':''}) 不输入为空字典{}<br></a>
+            <a>全局变量 在程序的一开始定义的变量<br></a>
+            <a>局部变量 在子程序函数中定义的变量<br></a>
+            <a>当全局和局部同名时，子程序中局部变量起作用，在其他地方全局变量起作用<br></a>
+            <a>局部变量 在函数中定义，那么这个函数就是这个变量的作用域，只在局部生效<br></a>
+            <a>a=<br> fun（）：<br> global a<br>  a=<br></a>
+            <a>以下概念仅针对number和string</a>
+            <a>全局变量 全局生效，如果在函数中修改了全局变量的值只在函数生命周期中生效，如果要在函数中修改全局变量并影响，用global</a>
+            <h3>递归</h3>
+            <a>函数在内部调用自身<br></a>
+            <a>1 必须要有个明确的结束条件<br></a>
+            <a>2 每次进入更深一层递归时，问题规模相比上次递归都应有所减少<br></a>
+            <a>3 递归效率不高，递归层次过多会导致栈溢出（在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减少一层栈帧，由于栈的大小不是无限的，所以递归的调用次数过多，会导致栈溢出<br></a>
+            <h3>高阶函数</h3>
+            <a>a:一个函数接受另一个函数名作为参数（在不修改被装饰函数源代码的情况下为其添加功能）<br></a>
+            <a>b:返回值中包含函数名（不修改函数的调用方式）<br></a>
+            <a>装饰器：本质是函数，装饰其他函数就是为其他函数添加附加功能 @语法糖 timer == test1=timer（test1）直接运行<br></a>
+            <a>不能修改被装饰的函数的源代码<br></a>
+            <a>不能修改被装饰的函数的调用方式<br></a>
+            <a>1.无参数<br></a>
+            <a>2.装饰器本身带参数<br></a>
+            <a>def a 形参为语法糖里的实参<br></a>
+            <a>     def b 形参为func 被装饰函数<br></a>
+            <a>         def 形参为*args，**kwargs 被装饰函数要的参数<br></a>
+            <a>3.被装饰函数带参数<br></a>
+            <a>def 形参为func 被装饰函数<br></a>
+            <a>     def 形参为*args，**kwargs 被装饰函数要的参数<br></a>
+            <a>实现装饰器知识储备：<br></a>
+            <a>1.函数即“变量”<br></a>
+            <a>2.高阶函数<br></a>
+            <a>3.嵌套函数<br></a>
+            <a>高阶函数+嵌套函数=》装饰器<br></a>
+            <a>*****先声明后调用<br></a>
+            <a>局部作用域和全局作用域的访问顺序 从里往外找<br></a>
+            <h3>生成器</h3>
+            <a>列表生成式<br></a>
+            <a>[ i*2 for i in range(10) ] --》 0 2 4 6 8 10 12 14 16 18 == map(lambda n:n*2,range(10))<br></a>
+            <a>c=( i*2 for i in range(10) ) 用到哪生成到哪 不支持列表的切片和取特定索引值 生成器只有在调用时在会生成相应的数据<br></a>
+            <a>c.__next__() 只记住当前位置，只能往前一步一步走，不能往后退 2.7为next（）<br></a>
+            <a>斐波那契数列Fibonacci 1 1 2 3 5   除了前两个数，任意一个数都可以由前两个数相加得到<br></a>
+            <a>赋值语句 a，b=b，a+b ==》 t=（b，a+b），a=t[0],b=t[1]<br></a>
+            <a>yield 保存函数的中断状态并退出返回，调用next会回到中断的状态 待补充 成了一个生成器 加上return是为了异常时报错误信息<br></a>
+            <a>通过yield实现单线程下的并发效果，到yield中断跳出，要通过next来实现生成器的执行<br></a>
+            <a>send 可以回到中断的状态并给yield传值<br></a>
+            <h3>迭代器</h3>
+            <a>可直接作用于for循环的数据类型有以下几种<br></a>
+            <a>一类是集合数据类型，list，tuple，dict，set，str<br></a>
+            <a>一类是generator，包括生成器和带yield的generator function<br></a>
+            <a>这些可以直接作用于for循环的对象统称为可迭代对象：Iterable<br></a>
+            <a>使用isinstance（？，Iterable）判断一个对象是否是可循环对象<br></a>
+            <a>可以被next（）函数调用并不断返回下一个值的对象成为迭代器：Iterator<br></a>
+            <a>生成器都是Iterator对象<br></a>
+            <a>把list、dict、str等可迭代对象变成迭代器的方法是 使用iter（）函数<br></a>
+            <a>2.7 xrange迭代器 range直接生成列表<br></a>
+            <a>3.x range生成迭代器<br></a>
+            <a>for循环本质上就是通过不断调用next（）函数实现的<br></a>
+            <h3>Json数据处理 python</h3>
+            <a>import json<br></a>
+            <a>序列化 将数据储存到系统硬盘上<br></a>
+            <a>json.dumps  只默认支持最简单的，函数那些复杂的转化不了，因为不同平台规范不同<br></a>
+            <a>反序列化 读出数据<br></a>
+            <a>json.loads<br></a>
+            <a>如果想要处理复杂的 import pickle 有自身的语法规则，并不是加密<br></a>
+            <a>pickle.dump（info，f） == f.write（pickle.dumps（info））<br></a>
+            <a>pickle.load（f）== pickle.loads（f.read（））<br></a>
+            <a>dump一次load一次 因为dump多次在load的时候会报错，而且保存多个状态在load 的时候找到指定的状态没有意义<br></a>
+            <h3>xml数据处理</h3>
+            <a>import xml.etree.ElementTree as ET<br></a>
+            <a>tree = ET.parse(文件名)<br></a>
+            <a>root=tree.getroot() 内存地址<br></a>
+            <a>root.tag 根标签名<br></a>
+            <a>遍历xml文档<br></a>
+            <a>for child in root:     #child.attrib中的name属性和值 --> "<"country name="dadasd"">"<br></a>
+            <a>for i in child:<br></a>
+            <a>     i.tag,t.text ->  "<"标签名 name=>（text）1"<"/标签名> text值没有返回none<br></a>
+            <a>只遍历特定节点<br></a>
+            <a>for node in root.iter(‘’)：<br></a>
+            <a>修改和删除xml文档内容<br></a>
+            <a>for node in root.iter('year'):<br></a>
+            <a>new_year = int(node.text)+1<br></a>
+            <a>node.text = str(new_year)<br></a>
+            <a>node.set（”updated“，”yes“） 给标签加加attrib<br></a>
+            <a>for c in root.findall('country'): 获取所有的country标签<br></a>
+            <a>rank = int(c.find('rank').text) <br></a>
+            <a>if rank > 50: <br></a>
+            <a>root.remove(c) <br></a>
+            <a>tree.write()<br></a>
+            <a>新建新的xml文件<br></a>
+            <a>import xml.etree.ElementTree as ET<br></a>
+            <a>new_xml = ET.Element("namelist") 定义根节点<br></a>
+            <a>name = ET.SubElement(new_xml,"name",attrib={"enrolled":"yes"}) 定义newxml的子节点，标签为name，属性为<br></a>
+            <a>age = ET.SubElement(name,"age",attrib={"checked":"no"})定义name的子节点<br></a>
+            <a>sex = ET.SubElement(name,"sex")<br></a>
+            <a>age.text = '33'<br></a>
+            <a>name2 = ET.SubElement(new_xml,"name",attrib={"enrolled":"no"})<br></a>
+            <a>et = ET.ElementTree(new_xml) 生成文档对象<br></a>
+            <a>et.write(名字，encoding=“”，xml_declaration=True)<br></a>
+            <a>ET.dump(new_xml) 打印生成的格式<br></a>
+
+        </div>
+        <div class="list">
+            <a>Hello World2</a>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            //获取点击事件的对象
+            $(".nav li").click(function(){
+                //获取要显示或隐藏的对象
+                var divShow = $(".content").children('.list');
+                //判断当前对象是否被选中，如果没选中的话进入if循环
+                if (!$(this).hasClass('selected')) {
+                    //获取当前对象的索引
+                    var index = $(this).index();
+                    //当前对象添加选中样式并且其同胞移除选中样式；
+                    $(this).addClass('selected').siblings('li').removeClass('selected');
+                    //索引对应的div块显示
+                    $(divShow[index]).show();
+                    //索引对应的div块的同胞隐藏
+                    $(divShow[index]).siblings('.list').hide();
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>
